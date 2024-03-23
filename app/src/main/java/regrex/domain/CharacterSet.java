@@ -1,4 +1,4 @@
-package domain;
+package regex.domain;
 
 public class CharacterSet {
     final static String upperCaseLetters = "ABCDEFGHUJKLMNOPQRSTUVWXYZ";
