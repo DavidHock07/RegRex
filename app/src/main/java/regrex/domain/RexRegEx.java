@@ -33,6 +33,13 @@ public class RexRegEx {
             if (value == null) {
                 throw new IllegalArgumentException("Ein oder mehrere Eingabewerte sind null.");
             }
+            if (value instanceof Iterable<?>) {
+                for (Object element : (Iterable<?>) value) {
+                    if (element == null) {
+                        throw new IllegalArgumentException("Ein oder mehrere Eingabewerte sind null.");
+                    }
+                }
+            }
         }
     }
 
@@ -48,12 +55,14 @@ public class RexRegEx {
 
     public static String anyLetterFromSet(Set<Character> letters) {
         checkNotNull(letters);
-        return "[" +  String.join("", letters.stream().map(Object::toString).toArray(String[]::new)) + "]";
+        return "[" + String.join("", letters.stream().map(Object::toString).toArray(String[]::new)) + "]";
     }
 
     public static String anyLetterFromSet(Character... letters) {
         checkNotNull((Object[]) letters);
-        return "[" + String.join("", Arrays.stream(letters).toArray(String[]::new)) + "]";
+        return "[" + String.join("", Arrays.stream(letters)
+                .map(Object::toString)
+                .toArray(String[]::new)) + "]";
     }
 
     public static String anyLetterFromSet(String... letters) {
@@ -63,27 +72,29 @@ public class RexRegEx {
 
     public static String noLetterFromSet(String letters) {
         checkNotNull(letters);
-        return "[" + letters + "]";
+        return "[^" + letters + "]";
     }
 
     public static String noLetterFromSet(List<String> letters) {
         checkNotNull(letters);
-        return "[" + String.join("", letters) + "]";
+        return "[^" + String.join("", letters) + "]";
     }
 
     public static String noLetterFromSet(Set<Character> letters) {
         checkNotNull(letters);
-        return "[" +  String.join("", letters.stream().map(Object::toString).toArray(String[]::new)) + "]";
+        return "[^" + String.join("", letters.stream().map(Object::toString).toArray(String[]::new)) + "]";
     }
 
     public static String noLetterFromSet(Character... letters) {
         checkNotNull((Object[]) letters);
-        return "[" + String.join("", Arrays.stream(letters).toArray(String[]::new)) + "]";
+        return "[^" + String.join("", Arrays.stream(letters)
+                .map(Object::toString)
+                .toArray(String[]::new)) + "]";
     }
 
     public static String noLetterFromSet(String... letters) {
         checkNotNull((Object[]) letters);
-        return "[" + String.join("", letters) + "]";
+        return "[^" + String.join("", letters) + "]";
     }
 
     public static String or(String argumentA, String argumentB) {
@@ -165,7 +176,7 @@ public class RexRegEx {
 
     public static String group(Set<Character> groupElements) {
         checkNotNull(groupElements);
-        return "(" +  String.join("", groupElements.stream().map(Object::toString).toArray(String[]::new)) + ")";
+        return "(" + String.join("", groupElements.stream().map(Object::toString).toArray(String[]::new)) + ")";
     }
 
     public static String group(String... groupElement) {
