@@ -1,6 +1,6 @@
 # RegRex – Java Builder for Regular Expressions
 
-RegRex is a Java library that simplifies the creation of regular expressions through an intuitive API. Instead of manually writing complex regex strings, RegRex lets you compile your expressions in a modular and readable way.
+RegRex is a Java library that makes creating regular expressions easier. Instead of manually crafting complex regex strings, RegRex allows you to build expressions in a modular and readable way.
 
 ---
 
