@@ -11,6 +11,13 @@
 			"installMaven": "false",
 			"installGradle": "true"
 		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"github.vscode-github-actions"
+			]
+		}
 	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
